@@ -21,19 +21,16 @@ public class PaymentService {
         SessionCreateParams params = SessionCreateParams.builder().setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl("http://localhost:8084/api/v1/payment/success?orderId=" + orderId)
                 .setCancelUrl("http://localhost:8084/api/v1/payment/cancel")
-                .addLineItem(
-                        SessionCreateParams.LineItem.builder()
+                .addLineItem(SessionCreateParams.LineItem.builder()
                                 .setQuantity(1L)
-                                .setPriceData(
-                                        SessionCreateParams.LineItem.PriceData.builder()
-                                                .setCurrency("usd")
-                                                .setUnitAmount(amount)
-                                                .setProductData(
-                                                        SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                                .setName("Order "+ orderId)
-                                                                .build())
+                                .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+                                        .setCurrency("usd")
+                                        .setUnitAmount(amount)
+                                        .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                                .setName("Order "+ orderId)
                                                 .build())
-                                .build())
+                                        .build())
+                        .build())
                 .build();
 
         try{
